@@ -27,11 +27,3 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-
-# extras
-
-.agent/
-.aider-desk/
-.frontend-design/
-.skills-lock.json
-.workflow-ai.md

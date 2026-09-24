@@ -1,0 +1,10 @@
+# agent / tooling artifacts
+.agents/
+.aider-desk/
+.agent/
+frontend-design/
+.frontend-design/
+skills-lock.json
+.skills-lock.json
+workflow-ai.md
+.workflow-ai.md
