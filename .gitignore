@@ -12,3 +12,4 @@ package-lock.json
 .package-lock.json
 .vercel
 .env*
+client/client/

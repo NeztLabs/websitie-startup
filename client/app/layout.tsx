@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   title: "NEZT — Software, Automation & Applied AI",
   description:
     "NEZT is a technology studio engineering software, automation, and applied AI for ambitious companies. Build. Connect. Scale.",
+  icons: {
+    icon: "/neztlogo.png",
+  },
   keywords: [
     "software engineering",
     "automation",

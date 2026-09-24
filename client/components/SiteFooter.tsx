@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
-import { brand, footer } from "@/lib/content";
+import Icon, { type IconName } from "./Icon";
+import { brand, footer, socials } from "@/lib/content";
 
 export default function SiteFooter() {
   const year = new Date().getFullYear();
@@ -17,6 +18,32 @@ export default function SiteFooter() {
             <p className="mt-6 font-display text-xs tracking-[0.3em] text-fg">
               BUILD. <span className="text-gold-gradient">CONNECT.</span> SCALE.
             </p>
+
+            <div className="mt-8">
+              <h3 className="font-display text-[0.6875rem] uppercase tracking-[0.2em] text-faint">
+                Social
+              </h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {socials.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target={social.href.startsWith("mailto:") ? undefined : "_blank"}
+                      rel={
+                        social.href.startsWith("mailto:")
+                          ? undefined
+                          : "noopener noreferrer"
+                      }
+                      aria-label={social.label}
+                      title={social.label}
+                      className="grid h-10 w-10 place-items-center rounded-sm border border-border text-muted transition-colors duration-200 hover:border-accent hover:text-accent"
+                    >
+                      <Icon name={social.icon as IconName} size={18} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7">

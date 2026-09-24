@@ -48,18 +48,14 @@ export default function Contact() {
                 <dt className="text-[0.6875rem] uppercase tracking-[0.14em] text-faint">
                   Email
                 </dt>
-                <dd className="mt-0.5 text-sm text-fg">{brand.email}</dd>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="grid h-9 w-9 place-items-center rounded-sm border border-border text-accent">
-                <Icon name="phone" size={16} />
-              </span>
-              <div>
-                <dt className="text-[0.6875rem] uppercase tracking-[0.14em] text-faint">
-                  Phone
-                </dt>
-                <dd className="mt-0.5 text-sm text-fg">{brand.phone}</dd>
+                <dd className="mt-0.5 text-sm text-fg">
+                  <a
+                    href={`mailto:${brand.email}`}
+                    className="transition-colors duration-200 hover:text-accent"
+                  >
+                    {brand.email}
+                  </a>
+                </dd>
               </div>
             </div>
             <div className="flex items-center gap-4">

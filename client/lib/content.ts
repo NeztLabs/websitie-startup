@@ -2,9 +2,8 @@ export const brand = {
   name: "NEZT",
   tagline: "BUILD. CONNECT. SCALE.",
   descriptor: "Technology studio — software, automation, applied AI",
-  email: "hello@nezt.io",
-  phone: "+1 (305) 555-0142",
-  locations: ["Miami, US", "Buenos Aires, AR", "Remote-first"],
+  email: "labsnezt@gmail.com",
+  locations: ["Remote-first", "Montevideo, Uruguay"],
 };
 
 export const nav = [
@@ -228,6 +227,21 @@ export const contact = {
   budgets: ["Under $25k", "$25k – $75k", "$75k – $200k", "$200k+", "Ongoing partnership"],
 };
 
+export const socials = [
+  { label: "Website", href: "https://websitie-startup.vercel.app/", icon: "globe" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/neztlabs",
+    icon: "linkedin",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/nezt.labs",
+    icon: "instagram",
+  },
+  { label: "Gmail", href: "mailto:labsnezt@gmail.com", icon: "mail" },
+];
+
 export const footer = {
   columns: [
     {
@@ -252,9 +266,15 @@ export const footer = {
       title: "Connect",
       links: [
         { label: "Contact", href: "/contact" },
-        { label: "hello@nezt.io", href: "mailto:hello@nezt.io" },
-        { label: "LinkedIn", href: "#" },
-        { label: "GitHub", href: "#" },
+        { label: "labsnezt@gmail.com", href: "mailto:labsnezt@gmail.com" },
+        {
+          label: "LinkedIn",
+          href: "https://www.linkedin.com/company/neztlabs",
+        },
+        {
+          label: "Instagram",
+          href: "https://www.instagram.com/nezt.labs",
+        },
       ],
     },
   ],
