@@ -1,21 +1,25 @@
+"use client";
+
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
-import { process } from "@/lib/content";
+import { useI18n } from "./I18nProvider";
 
 export default function Process() {
+  const { t } = useI18n();
+
   return (
     <section id="process" className="py-24 md:py-32">
       <div className="container-nezt">
         <Reveal>
           <SectionHeading
-            label="Process"
-            title="A delivery model built for accountability."
-            intro="Five stages, each with a defined output. You always know what is being built, why, and what comes next."
+            label={t.processSection.label}
+            title={t.processSection.title}
+            intro={t.processSection.intro}
           />
         </Reveal>
 
         <ol className="mt-16 grid gap-10 md:grid-cols-5 md:gap-6">
-          {process.map((stage, i) => (
+          {t.process.map((stage, i) => (
             <Reveal as="li" key={stage.step} delay={(i % 4) as 0 | 1 | 2 | 3}>
               <div className="relative">
                 <div className="flex items-center gap-3">

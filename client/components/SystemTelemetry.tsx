@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useI18n } from "./I18nProvider";
 
 type Tab = "topology" | "events" | "metrics";
 
 export default function SystemTelemetry({ className = "" }: { className?: string }) {
+  const { t } = useI18n();
   const [activeTab, setActiveTab] = useState<Tab>("topology");
   const [selectedNode, setSelectedNode] = useState<string>("api");
 
@@ -13,33 +15,33 @@ export default function SystemTelemetry({ className = "" }: { className?: string
       id: "edge",
       name: "Edge Gateway",
       tech: "Reverse Proxy & TLS",
-      status: "Active",
+      status: t.telemetry.statuses.edge,
       latency: "4ms",
-      details: "TLS termination, global rate-limiting, and smart request routing.",
+      details: t.telemetry.details.edge,
     },
     {
       id: "api",
       name: "Go Services Core",
       tech: "Golang Microservices",
-      status: "Healthy",
+      status: t.telemetry.statuses.api,
       latency: "1.2ms",
-      details: "High-throughput business logic, concurrent workers, and JWT auth.",
+      details: t.telemetry.details.api,
     },
     {
       id: "db",
       name: "MongoDB Cluster",
       tech: "Replica Set (Distributed)",
-      status: "Synced",
+      status: t.telemetry.statuses.db,
       latency: "3.1ms",
-      details: "High-availability document storage for catalog, articles, and orders.",
+      details: t.telemetry.details.db,
     },
     {
       id: "ui",
       name: "Client Interfaces",
       tech: "React / Vite / Next.js",
-      status: "PWA Ready",
+      status: t.telemetry.statuses.ui,
       latency: "<100ms LCP",
-      details: "Ultra-fast headless storefronts and responsive admin dashboards.",
+      details: t.telemetry.details.ui,
     },
   ];
 
@@ -84,7 +86,7 @@ export default function SystemTelemetry({ className = "" }: { className?: string
               : "border-transparent text-muted hover:text-fg"
           }`}
         >
-          // Topology
+          {t.telemetry.tabs.topology}
         </button>
         <button
           type="button"
@@ -95,7 +97,7 @@ export default function SystemTelemetry({ className = "" }: { className?: string
               : "border-transparent text-muted hover:text-fg"
           }`}
         >
-          // Live Events
+          {t.telemetry.tabs.events}
         </button>
         <button
           type="button"
@@ -106,7 +108,7 @@ export default function SystemTelemetry({ className = "" }: { className?: string
               : "border-transparent text-muted hover:text-fg"
           }`}
         >
-          // Telemetry
+          {t.telemetry.tabs.metrics}
         </button>
       </div>
 
@@ -146,7 +148,7 @@ export default function SystemTelemetry({ className = "" }: { className?: string
             {selectedNode && (
               <div className="rounded-sm border border-border/80 bg-surface/40 p-3 font-mono text-xs">
                 <div className="flex items-center justify-between border-b border-border/60 pb-2">
-                  <span className="text-muted">Selected Module:</span>
+                  <span className="text-muted">{t.telemetry.selectedModule}</span>
                   <span className="font-semibold text-accent">
                     {nodes.find((n) => n.id === selectedNode)?.name}
                   </span>
@@ -188,31 +190,31 @@ export default function SystemTelemetry({ className = "" }: { className?: string
           <div className="grid grid-cols-2 gap-3 font-mono">
             <div className="rounded-sm border border-border bg-surface/50 p-3">
               <span className="text-[0.6875rem] uppercase tracking-wider text-faint">
-                p95 Response
+                {t.telemetry.metrics.p95Label}
               </span>
               <p className="mt-1 text-xl font-bold text-fg">18.4 ms</p>
-              <p className="mt-0.5 text-[0.6875rem] text-emerald-400">99.98% SLA bound</p>
+              <p className="mt-0.5 text-[0.6875rem] text-emerald-400">{t.telemetry.metrics.p95Sub}</p>
             </div>
             <div className="rounded-sm border border-border bg-surface/50 p-3">
               <span className="text-[0.6875rem] uppercase tracking-wider text-faint">
-                Uptime Target
+                {t.telemetry.metrics.uptimeLabel}
               </span>
               <p className="mt-1 text-xl font-bold text-fg">99.99%</p>
-              <p className="mt-0.5 text-[0.6875rem] text-emerald-400">Zero Unplanned Downtime</p>
+              <p className="mt-0.5 text-[0.6875rem] text-emerald-400">{t.telemetry.metrics.uptimeSub}</p>
             </div>
             <div className="rounded-sm border border-border bg-surface/50 p-3">
               <span className="text-[0.6875rem] uppercase tracking-wider text-faint">
-                Architecture
+                {t.telemetry.metrics.archLabel}
               </span>
-              <p className="mt-1 text-base font-bold text-fg">Distributed</p>
-              <p className="mt-0.5 text-[0.6875rem] text-muted">Go + NoSQL + CDN</p>
+              <p className="mt-1 text-base font-bold text-fg">{t.telemetry.metrics.archValue}</p>
+              <p className="mt-0.5 text-[0.6875rem] text-muted">{t.telemetry.metrics.archSub}</p>
             </div>
             <div className="rounded-sm border border-border bg-surface/50 p-3">
               <span className="text-[0.6875rem] uppercase tracking-wider text-faint">
-                Observability
+                {t.telemetry.metrics.obsLabel}
               </span>
-              <p className="mt-1 text-base font-bold text-fg">Structured</p>
-              <p className="mt-0.5 text-[0.6875rem] text-muted">Telemetry & Audit Logs</p>
+              <p className="mt-1 text-base font-bold text-fg">{t.telemetry.metrics.obsValue}</p>
+              <p className="mt-0.5 text-[0.6875rem] text-muted">{t.telemetry.metrics.obsSub}</p>
             </div>
           </div>
         )}

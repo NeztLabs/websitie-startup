@@ -9,7 +9,7 @@ export class WorkPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.startProjectCta = page
-      .getByRole("link", { name: "Start a project" })
+      .getByRole("link", { name: "Iniciar un proyecto" })
       .last();
     this.talkToEngineerCta = page.getByRole("link", {
       name: "Hablar con un Ingeniero",

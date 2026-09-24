@@ -15,18 +15,18 @@ export class ContactPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
-    this.nameInput = page.getByLabel("Full name");
-    this.emailInput = page.getByLabel("Work email");
-    this.companyInput = page.getByLabel("Company");
-    this.projectTypeSelect = page.getByLabel("Project type");
-    this.budgetSelect = page.getByLabel("Budget range");
-    this.messageInput = page.getByLabel("What are you building?");
-    this.submitButton = page.getByRole("button", { name: "Send message" });
+    this.nameInput = page.getByLabel("Nombre completo");
+    this.emailInput = page.getByLabel("Email de trabajo");
+    this.companyInput = page.getByLabel("Empresa");
+    this.projectTypeSelect = page.getByLabel("Tipo de proyecto");
+    this.budgetSelect = page.getByLabel("Presupuesto");
+    this.messageInput = page.getByLabel("¿Qué estás construyendo?");
+    this.submitButton = page.getByRole("button", { name: "Enviar mensaje" });
     this.successHeading = page.getByRole("heading", {
-      name: "Message received.",
+      name: "Mensaje recibido.",
     });
     this.sendAnotherButton = page.getByRole("button", {
-      name: "Send another message",
+      name: "Enviar otro mensaje",
     });
     this.emailLink = page.getByRole("link", { name: "labsnezt@gmail.com" });
   }
@@ -59,7 +59,7 @@ export class ContactPage extends BasePage {
     await expect(this.successHeading).toBeVisible();
     await expect(
       this.page.getByText(
-        "Thank you. A senior engineer will get back to you within one business day with next steps."
+        "Gracias. Un ingeniero senior te responderá dentro de un día hábil con los próximos pasos."
       )
     ).toBeVisible();
   }

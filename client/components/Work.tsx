@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 import Icon from "./Icon";
-import { projects } from "@/lib/projects";
+import { useI18n } from "./I18nProvider";
 
 export default function Work({
   showHeading = true,
@@ -11,7 +13,8 @@ export default function Work({
   showHeading?: boolean;
   limit?: number;
 }) {
-  const displayProjects = limit ? projects.slice(0, limit) : projects;
+  const { t } = useI18n();
+  const displayProjects = limit ? t.projects.slice(0, limit) : t.projects;
 
   return (
     <section id="work" className="py-24 md:py-32">
@@ -19,9 +22,9 @@ export default function Work({
         {showHeading && (
           <Reveal>
             <SectionHeading
-              label="Selected Work"
-              title="Real software. Proven outcomes."
-              intro="Explore the platforms, architectures, and internal engines we've engineered for high-demand public and private operations."
+              label={t.workSection.label}
+              title={t.workSection.title}
+              intro={t.workSection.intro}
             />
           </Reveal>
         )}
@@ -55,7 +58,7 @@ export default function Work({
 
                     <div className="rounded-sm border border-border/80 bg-surface/50 p-4">
                       <p className="text-xs font-semibold text-fg mb-1">
-                        Arquitectura & Entrega Técnica:
+                        {t.workSection.architectureLabel}
                       </p>
                       <p className="font-mono text-xs text-muted leading-relaxed">
                         {project.solution.architecture}
@@ -78,7 +81,7 @@ export default function Work({
                   <div className="lg:col-span-4 flex flex-col justify-between border-t border-border pt-6 lg:border-t-0 lg:border-l lg:pl-10 lg:pt-0 h-full">
                     <div>
                       <p className="text-xs uppercase tracking-wider text-faint mb-4">
-                        Métricas de Impacto
+                        {t.workSection.metricsLabel}
                       </p>
                       <div className="space-y-4">
                         {project.metrics.map((m) => (
@@ -99,7 +102,7 @@ export default function Work({
                         href={`/work/${project.slug}`}
                         className="inline-flex items-center gap-2 font-display text-xs font-semibold uppercase tracking-wider text-fg transition-colors hover:text-accent"
                       >
-                        Ver Caso Completo
+                        {t.workSection.viewCase}
                         <Icon name="arrow-right" size={14} />
                       </Link>
                     </div>

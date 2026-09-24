@@ -1,9 +1,14 @@
+"use client";
+
 import Button from "./Button";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
-import { contact } from "@/lib/content";
+import { useI18n } from "./I18nProvider";
 
 export default function CtaBand() {
+  const { t } = useI18n();
+  const contact = t.contactSection;
+
   return (
     <section className="relative overflow-hidden border-t border-border py-24 md:py-32">
       <div className="container-nezt relative">
@@ -25,7 +30,7 @@ export default function CtaBand() {
               </p>
             </div>
             <Button href="/contact" size="md" className="shrink-0">
-              Start a project
+              {t.common.startProject}
               <Icon name="arrow-right" size={16} />
             </Button>
           </div>

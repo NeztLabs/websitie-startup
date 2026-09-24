@@ -1,8 +1,12 @@
+"use client";
+
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
-import { capabilities } from "@/lib/content";
+import { useI18n } from "./I18nProvider";
 
 export default function Capabilities() {
+  const { t } = useI18n();
+
   return (
     <section
       id="capabilities"
@@ -11,14 +15,14 @@ export default function Capabilities() {
       <div className="container-nezt relative">
         <Reveal>
           <SectionHeading
-            label="Capabilities"
-            title="One system, six layers."
-            intro="We work across the whole stack, so nothing falls between vendors. Each layer is designed to be replaceable, observable, and yours."
+            label={t.capabilitiesSection.label}
+            title={t.capabilitiesSection.title}
+            intro={t.capabilitiesSection.intro}
           />
         </Reveal>
 
         <div className="mt-14 border-t border-border">
-          {capabilities.map((layer, i) => (
+          {t.capabilities.map((layer, i) => (
             <Reveal key={layer.id} delay={(i % 4) as 0 | 1 | 2 | 3}>
               <div className="group grid items-center gap-4 border-b border-border py-6 transition-colors duration-200 hover:bg-surface/50 md:grid-cols-12 md:gap-8 md:px-2">
                 <div className="flex items-center gap-4 md:col-span-4">

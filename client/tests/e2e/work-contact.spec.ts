@@ -58,7 +58,7 @@ test.describe("Work → send email (contact form)", () => {
       name: "Jane Doe",
       email: "jane@company.com",
       company: "Acme Inc",
-      projectType: "Custom software",
+      projectType: "Software a medida",
       budget: "$25k – $75k",
       message: "We need an internal portal to replace a manual process.",
     });
@@ -71,7 +71,7 @@ test.describe("Work → send email (contact form)", () => {
       name: "Jane Doe",
       email: "jane@company.com",
       company: "Acme Inc",
-      projectType: "Custom software",
+      projectType: "Software a medida",
       budget: "$25k – $75k",
       message: "We need an internal portal to replace a manual process.",
     });
@@ -91,7 +91,7 @@ test.describe("Work → send email (contact form)", () => {
     await contactPage.fillForm({
       name: "John Smith",
       email: "john@startup.io",
-      projectType: "Applied AI",
+      projectType: "IA aplicada",
       message: "Similar routing challenge to the Orbit case study.",
     });
     await contactPage.submit();
@@ -108,14 +108,14 @@ test.describe("Work → send email (contact form)", () => {
     await contactPage.fillForm({
       name: "Jane Doe",
       email: "jane@company.com",
-      projectType: "Custom software",
+      projectType: "Software a medida",
       message: "Testing failure handling.",
     });
     await contactPage.submit();
 
-    const alert = page.getByRole("alert").filter({ hasText: "Something went wrong" });
+    const alert = page.getByRole("alert").filter({ hasText: "Algo salió mal" });
     await expect(alert).toBeVisible();
-    await expect(alert).toContainText("Something went wrong");
+    await expect(alert).toContainText("Algo salió mal");
     await expect(contactPage.successHeading).toBeHidden();
     await expect(contactPage.submitButton).toBeEnabled();
   });
@@ -139,7 +139,7 @@ test.describe("Work → send email (contact form)", () => {
     await contactPage.fillForm({
       name: "Jane Doe",
       email: "not-an-email",
-      projectType: "Custom software",
+      projectType: "Software a medida",
       message: "Testing email validation.",
     });
     await contactPage.submit();
@@ -158,7 +158,7 @@ test.describe("Work → send email (contact form)", () => {
     await contactPage.fillForm({
       name: "Jane Doe",
       email: "jane@company.com",
-      projectType: "Custom software",
+      projectType: "Software a medida",
       message: "First message.",
     });
     await contactPage.submit();

@@ -1,22 +1,26 @@
+"use client";
+
 import Icon, { type IconName } from "./Icon";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
-import { services } from "@/lib/content";
+import { useI18n } from "./I18nProvider";
 
 export default function Services() {
+  const { t } = useI18n();
+
   return (
     <section id="services" className="relative py-24 md:py-32">
       <div className="container-nezt">
         <Reveal>
           <SectionHeading
-            label="Services"
-            title="Engineering, from architecture to operations."
-            intro="We take on the systems that carry real weight — and stay accountable for how they perform in production."
+            label={t.servicesSection.label}
+            title={t.servicesSection.title}
+            intro={t.servicesSection.intro}
           />
         </Reveal>
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => (
+          {t.services.map((service, i) => (
             <Reveal key={service.title} delay={(i % 3) as 0 | 1 | 2}>
               <article className="surface-card group flex h-full flex-col p-7">
                 <span

@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useI18n } from "./I18nProvider";
 
 type Theme = "dark" | "light";
 
 export default function ThemeToggle({ className = "" }: { className?: string }) {
+  const { t } = useI18n();
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
@@ -30,7 +32,7 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
   }
 
   const label =
-    theme === "dark" ? "Switch to light mode" : "Switch to dark mode";
+    theme === "dark" ? t.theme.toLight : t.theme.toDark;
 
   return (
     <button

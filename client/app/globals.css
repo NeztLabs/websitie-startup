@@ -88,6 +88,12 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  html,
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
   body {
     background-color: var(--bg);
     color: var(--fg);
@@ -96,9 +102,21 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    min-height: 100dvh;
     transition:
       background-color 260ms var(--ease-out-soft),
       color 260ms var(--ease-out-soft);
+  }
+
+  img,
+  video,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  iframe {
+    max-width: 100%;
   }
 
   ::selection {
@@ -270,5 +288,53 @@
   .reveal {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   BOOTSTRAP 5.3 COEXISTENCIA + RESPONSIVE
+   Se importa solo grid + utilities en layout.tsx:
+     - .container / .container-fluid / .row / .col-* / .g-* / .offset-*
+     - utilidades d-*, flex-*, order-*, m-*, p-*, text-{sm,md,lg}-*, etc.
+   Estas reglas evitan choques con Tailwind y con el design system NEZT.
+--------------------------------------------------------------------------- */
+
+@layer base {
+  /* Bootstrap usa --bs-* así que no pisa --bg/--fg. Reafirmamos fondo
+     por si algún estilo de terceros intenta poner body en blanco. */
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+  }
+
+  /* Filas de Bootstrap dentro de nuestro contenedor custom no deben
+     generar scroll horizontal por los gutters negativos. */
+  .container-nezt > .row {
+    margin-inline: calc(var(--bs-gutter-x, 1.5rem) * -0.5);
+  }
+}
+
+@layer utilities {
+  /* Cualquier .row > * que desborde (canvas, tablas, pre) se recorta. */
+  .row > * {
+    min-width: 0;
+  }
+
+  /* Helper para medios embebidos 16:9 / 4:3 responsive sin JS. */
+  .ratio-nezt {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .ratio-nezt > iframe,
+  .ratio-nezt > video,
+  .ratio-nezt > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }

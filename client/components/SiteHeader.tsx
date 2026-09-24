@@ -6,11 +6,13 @@ import Logo from "./Logo";
 import Button from "./Button";
 import Icon from "./Icon";
 import ThemeToggle from "./ThemeToggle";
-import { nav } from "@/lib/content";
+import LangToggle from "./LangToggle";
+import { useI18n } from "./I18nProvider";
 
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useI18n();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -51,7 +53,7 @@ export default function SiteHeader() {
           className="hidden items-center gap-8 lg:flex"
           aria-label="Primary"
         >
-          {nav.map((item) => (
+          {t.nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -63,18 +65,19 @@ export default function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <LangToggle />
           <ThemeToggle />
           <Button
             href="/contact"
             size="sm"
             className="hidden sm:inline-flex"
           >
-            Start a project
+            {t.common.startProject}
           </Button>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t.header.closeMenu : t.header.openMenu}
             aria-expanded={open}
             className="grid h-9 w-9 place-items-center rounded-sm border border-border text-fg transition-colors hover:border-accent hover:text-accent lg:hidden"
           >
@@ -94,7 +97,7 @@ export default function SiteHeader() {
           className="container-nezt flex flex-col gap-1 py-6"
           aria-label="Mobile"
         >
-          {nav.map((item) => (
+          {t.nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -111,7 +114,7 @@ export default function SiteHeader() {
             className="mt-5 w-full"
             onClick={() => setOpen(false)}
           >
-            Start a project
+            {t.common.startProject}
           </Button>
         </nav>
       </div>

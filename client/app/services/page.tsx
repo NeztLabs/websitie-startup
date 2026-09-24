@@ -3,9 +3,9 @@ import Services from "@/components/Services";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Services — NEZT",
+  title: "Servicios — NEZT",
   description:
-    "Custom software, process automation, applied AI, data platforms, systems integration, and security — engineered from architecture to operations.",
+    "Software a medida, automatización de procesos, IA aplicada, plataformas de datos, integración de sistemas y seguridad — desde la arquitectura hasta las operaciones.",
 };
 
 export default function ServicesPage() {

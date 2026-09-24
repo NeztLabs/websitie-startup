@@ -1,8 +1,12 @@
+"use client";
+
 import Icon, { type IconName } from "./Icon";
 import Reveal from "./Reveal";
-import { labs } from "@/lib/content";
+import { useI18n } from "./I18nProvider";
 
 export default function Labs() {
+  const { t } = useI18n();
+
   return (
     <section
       id="labs"
@@ -16,13 +20,13 @@ export default function Labs() {
                 aria-hidden="true"
                 className="h-1.5 w-1.5 rounded-full bg-accent"
               />
-              <span className="label-tech">Accelerators & Research</span>
+              <span className="label-tech">{t.labsLabel}</span>
             </div>
             <h2 className="mt-5 font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-fg sm:text-4xl">
               NEZT LABS
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted">
-              {labs.body}
+              {t.labs.body}
             </p>
             <p className="mt-6 font-display text-xs tracking-[0.2em] text-accent font-semibold">
               PRE-TESTED ENGINES · FASTER TIME-TO-MARKET
@@ -31,7 +35,7 @@ export default function Labs() {
         </div>
 
         <div className="grid gap-px overflow-hidden rounded-md border border-border bg-border sm:grid-cols-2 lg:col-span-7">
-          {labs.items.map((item, i) => (
+          {t.labs.items.map((item, i) => (
             <Reveal
               key={item.title}
               delay={(i % 2) as 0 | 1}

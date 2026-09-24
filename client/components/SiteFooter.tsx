@@ -1,9 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import Logo from "./Logo";
 import Icon, { type IconName } from "./Icon";
-import { brand, footer, socials } from "@/lib/content";
+import { useI18n } from "./I18nProvider";
 
 export default function SiteFooter() {
+  const { t } = useI18n();
+  const { brand, footer, socials } = t;
   const year = new Date().getFullYear();
 
   return (
@@ -21,7 +25,7 @@ export default function SiteFooter() {
 
             <div className="mt-8">
               <h3 className="font-display text-[0.6875rem] uppercase tracking-[0.2em] text-faint">
-                Social
+                {t.footer.social}
               </h3>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {socials.map((social) => (
@@ -80,7 +84,7 @@ export default function SiteFooter() {
 
         <div className="mt-16 flex flex-col gap-4 border-t border-border pt-8 text-xs text-faint sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {brand.name}. All rights reserved.
+            © {year} {brand.name}. {t.footer.rights}
           </p>
           <p className="font-display tracking-[0.2em]">
             ENGINEERED SYSTEMS · NEZT LABS

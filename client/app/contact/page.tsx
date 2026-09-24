@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Contact from "@/components/Contact";
 
 export const metadata: Metadata = {
-  title: "Start a project — NEZT",
+  title: "Iniciar un proyecto — NEZT",
   description:
-    "Tell us what you're building. Share the problem and the constraints, and we'll reply within one business day with a point of view and next steps.",
+    "Contanos qué estás construyendo. Compartí el problema y las restricciones, y respondemos dentro de un día hábil con un punto de vista y próximos pasos.",
 };
 
 export default function ContactPage() {

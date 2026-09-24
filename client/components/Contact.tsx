@@ -3,12 +3,14 @@
 import { useState, type FormEvent } from "react";
 import Button from "./Button";
 import Icon from "./Icon";
-import { contact, brand } from "@/lib/content";
+import { useI18n } from "./I18nProvider";
 
 const field =
   "w-full rounded-sm border border-border bg-surface px-4 py-3 text-sm text-fg placeholder:text-faint transition-colors duration-200 focus:border-accent";
 
 export default function Contact() {
+  const { t } = useI18n();
+  const { contact, brand } = t;
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
@@ -54,13 +56,13 @@ export default function Contact() {
               aria-hidden="true"
               className="h-1.5 w-1.5 rounded-full bg-accent"
             />
-            <span className="label-tech">{contact.eyebrow}</span>
+            <span className="label-tech">{t.contactSection.eyebrow}</span>
           </div>
           <h2 className="mt-5 font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-fg sm:text-4xl">
-            {contact.title}
+            {t.contactSection.title}
           </h2>
           <p className="mt-5 max-w-md text-base leading-relaxed text-muted">
-            {contact.body}
+            {t.contactSection.body}
           </p>
 
           <dl className="mt-10 space-y-5 border-t border-border pt-8">
@@ -70,7 +72,7 @@ export default function Contact() {
               </span>
               <div>
                 <dt className="text-[0.6875rem] uppercase tracking-[0.14em] text-faint">
-                  Email
+                  {t.contactInfo.emailLabel}
                 </dt>
                 <dd className="mt-0.5 text-sm text-fg">
                   <a
@@ -88,7 +90,7 @@ export default function Contact() {
               </span>
               <div>
                 <dt className="text-[0.6875rem] uppercase tracking-[0.14em] text-faint">
-                  Studios
+                  {t.contactInfo.studiosLabel}
                 </dt>
                 <dd className="mt-0.5 text-sm text-fg">
                   {brand.locations.join(" · ")}
@@ -106,18 +108,17 @@ export default function Contact() {
                   <Icon name="check" size={22} />
                 </span>
                 <h3 className="mt-6 font-display text-xl font-semibold text-fg">
-                  Message received.
+                  {t.contactForm.successTitle}
                 </h3>
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-                  Thank you. A senior engineer will get back to you within one
-                  business day with next steps.
+                  {t.contactForm.successBody}
                 </p>
                 <button
                   type="button"
                   onClick={() => setStatus("idle")}
                   className="mt-6 text-sm text-accent underline-offset-4 hover:underline"
                 >
-                  Send another message
+                  {t.contactForm.sendAnother}
                 </button>
               </div>
             ) : (
@@ -125,7 +126,7 @@ export default function Contact() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="mb-2 block text-sm text-muted">
-                      Full name
+                      {t.contactForm.fullName}
                     </label>
                     <input
                       id="name"
@@ -133,13 +134,13 @@ export default function Contact() {
                       type="text"
                       required
                       autoComplete="name"
-                      placeholder="Jane Doe"
+                      placeholder={t.contactForm.namePlaceholder}
                       className={field}
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="mb-2 block text-sm text-muted">
-                      Work email
+                      {t.contactForm.workEmail}
                     </label>
                     <input
                       id="email"
@@ -156,20 +157,20 @@ export default function Contact() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor="company" className="mb-2 block text-sm text-muted">
-                      Company
+                      {t.contactForm.company}
                     </label>
                     <input
                       id="company"
                       name="company"
                       type="text"
                       autoComplete="organization"
-                      placeholder="Company name"
+                      placeholder={t.contactForm.companyPlaceholder}
                       className={field}
                     />
                   </div>
                   <div>
                     <label htmlFor="projectType" className="mb-2 block text-sm text-muted">
-                      Project type
+                      {t.contactForm.projectType}
                     </label>
                     <div className="relative">
                       <select
@@ -180,7 +181,7 @@ export default function Contact() {
                         className={`${field} appearance-none pr-10`}
                       >
                         <option value="" disabled>
-                          Select one
+                          {t.contactForm.selectOne}
                         </option>
                         {contact.projectTypes.map((type) => (
                           <option key={type} value={type}>
@@ -199,7 +200,7 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="budget" className="mb-2 block text-sm text-muted">
-                    Budget range
+                    {t.contactForm.budget}
                   </label>
                   <div className="relative">
                     <select
@@ -209,7 +210,7 @@ export default function Contact() {
                       className={`${field} appearance-none pr-10`}
                     >
                       <option value="" disabled>
-                        Select a range
+                        {t.contactForm.selectRange}
                       </option>
                       {contact.budgets.map((b) => (
                         <option key={b} value={b}>
@@ -227,42 +228,43 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="message" className="mb-2 block text-sm text-muted">
-                    What are you building?
+                    {t.contactForm.message}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows={5}
-                    placeholder="Describe the problem, the constraints, and what success looks like."
+                    placeholder={t.contactForm.messagePlaceholder}
                     className={`${field} resize-y`}
                   />
                 </div>
 
                 {status === "error" && (
                   <p role="alert" className="text-sm text-red-400">
-                    Something went wrong sending your message. Please email us
-                    directly at{" "}
+                    {t.contactForm.errorText.split("{email}")[0]}
                     <a
                       href={`mailto:${brand.email}`}
                       className="underline underline-offset-4"
                     >
                       {brand.email}
                     </a>
-                    .
+                    {t.contactForm.errorText.split("{email}")[1]}
                   </p>
                 )}
 
                 <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
                   <p className="text-xs text-faint">
-                    We reply within one business day.
+                    {t.contactForm.replyNote}
                   </p>
                   <Button
                     type="submit"
                     size="md"
                     disabled={status === "sending"}
                   >
-                    {status === "sending" ? "Sending…" : "Send message"}
+                    {status === "sending"
+                      ? t.contactForm.sending
+                      : t.contactForm.send}
                     <Icon name="arrow-up-right" size={16} />
                   </Button>
                 </div>

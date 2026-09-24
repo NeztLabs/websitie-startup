@@ -1,21 +1,25 @@
+"use client";
+
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
-import { principles } from "@/lib/content";
+import { useI18n } from "./I18nProvider";
 
 export default function Principles() {
+  const { t } = useI18n();
+
   return (
     <section id="principles" className="py-24 md:py-32">
       <div className="container-nezt">
         <Reveal>
           <SectionHeading
-            label="Principles"
-            title="How we make decisions."
-            intro="The rules we hold to when a project gets hard — which is when they matter most."
+            label={t.principlesSection.label}
+            title={t.principlesSection.title}
+            intro={t.principlesSection.intro}
           />
         </Reveal>
 
         <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2">
-          {principles.map((item, i) => (
+          {t.principles.map((item, i) => (
             <Reveal key={item.title} delay={(i % 2) as 0 | 1}>
               <div className="border-t border-border-strong pt-6">
                 <div className="flex items-baseline gap-4">

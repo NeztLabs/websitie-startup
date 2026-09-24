@@ -3,9 +3,9 @@ import Work from "@/components/Work";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Selected Work — NEZT",
+  title: "Trabajos seleccionados — NEZT",
   description:
-    "Production software, custom web platforms, Go microservices, and automation architectures engineered by NEZT.",
+    "Software en producción, plataformas web a medida, microservicios en Go y arquitecturas de automatización diseñados por NEZT.",
 };
 
 export default function WorkPage() {

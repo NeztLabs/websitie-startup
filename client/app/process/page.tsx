@@ -4,9 +4,9 @@ import Principles from "@/components/Principles";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Process & Principles — NEZT",
+  title: "Proceso & Principios — NEZT",
   description:
-    "A delivery model built for accountability: five stages with defined outputs, and the principles we hold to when a project gets hard.",
+    "Un modelo de entrega pensado en la responsabilidad: cinco etapas con resultados definidos, y los principios que sostenemos cuando el proyecto se pone difícil.",
 };
 
 export default function ProcessPage() {

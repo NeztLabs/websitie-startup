@@ -1,15 +1,13 @@
+"use client";
+
 import Button from "./Button";
 import Icon from "./Icon";
 import SystemTelemetry from "./SystemTelemetry";
-import { hero } from "@/lib/content";
+import { useI18n } from "./I18nProvider";
 
 export default function Hero() {
-  const highlights = [
-    { label: "High Concurrency", desc: "Go microservices & low-latency engines" },
-    { label: "Tailored UI / UX", desc: "React, Vite & Next.js client systems" },
-    { label: "Resilient Data", desc: "MongoDB, PostgreSQL & event streaming" },
-    { label: "Direct Engineering", desc: "Senior engineers without layers or noise" },
-  ];
+  const { t } = useI18n();
+  const { hero } = t;
 
   return (
     <section id="top" className="relative overflow-hidden">
@@ -60,7 +58,7 @@ export default function Hero() {
             </div>
 
             <p className="mt-9 font-display text-xs font-medium tracking-[0.3em] text-muted">
-              BUILD. CONNECT. SCALE.
+              {t.brand.tagline}
             </p>
           </div>
 
@@ -70,7 +68,7 @@ export default function Hero() {
         </div>
 
         <div className="grid grid-cols-2 gap-6 border-t border-border py-8 md:grid-cols-4">
-          {highlights.map((h) => (
+          {hero.highlights.map((h) => (
             <div key={h.label} className="px-1">
               <div className="font-display text-sm font-semibold text-fg">
                 {h.label}

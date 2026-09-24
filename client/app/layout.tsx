@@ -1,7 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import BootstrapClient from "@/components/BootstrapClient";
+import { I18nProvider } from "@/components/I18nProvider";
+// Bootstrap solo grid + utilities para no romper el design system de Tailwind
+// (se evita bootstrap.min.css completo porque su Reboot pisa los tokens dark/light).
+import "bootstrap/dist/css/bootstrap-grid.min.css";
+import "bootstrap/dist/css/bootstrap-utilities.min.css";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -23,34 +29,40 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://nezt.io"),
-  title: "NEZT — Software, Automation & Applied AI",
+  title: "NEZT — Software, Automatización & IA Aplicada",
   description:
-    "NEZT is a technology studio engineering software, automation, and applied AI for ambitious companies. Build. Connect. Scale.",
+    "NEZT es un estudio de tecnología que construye software, automatización e IA aplicada para empresas ambiciosas. Build. Connect. Scale.",
   icons: {
     icon: "/neztlogo.png",
   },
   keywords: [
-    "software engineering",
-    "automation",
-    "applied AI",
-    "data platforms",
-    "systems integration",
+    "ingeniería de software",
+    "automatización",
+    "IA aplicada",
+    "plataformas de datos",
+    "integración de sistemas",
     "NEZT",
   ],
   openGraph: {
-    title: "NEZT — Software, Automation & Applied AI",
+    title: "NEZT — Software, Automatización & IA Aplicada",
     description:
-      "We build the systems behind ambitious companies. Software, automation, and applied AI engineered to scale.",
+      "Construimos los sistemas que sostienen a las empresas ambiciosas. Software, automatización e IA aplicada diseñados para escalar.",
     type: "website",
     siteName: "NEZT",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NEZT — Software, Automation & Applied AI",
+    title: "NEZT — Software, Automatización & IA Aplicada",
     description:
-      "We build the systems behind ambitious companies. Build. Connect. Scale.",
+      "Construimos los sistemas que sostienen a las empresas ambiciosas. Build. Connect. Scale.",
   },
 };
 
@@ -60,14 +72,17 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="es" className="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className={`${jakarta.variable} ${inter.variable} ${mono.variable} antialiased`}>
-        <SiteHeader />
-        {children}
-        <SiteFooter />
+        <BootstrapClient />
+        <I18nProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </I18nProvider>
       </body>
     </html>
   );
