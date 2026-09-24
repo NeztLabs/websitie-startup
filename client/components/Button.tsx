@@ -30,6 +30,7 @@ type ButtonProps = {
   onClick?: MouseEventHandler<HTMLElement>;
   target?: string;
   rel?: string;
+  disabled?: boolean;
   "aria-label"?: string;
 };
 
@@ -43,6 +44,7 @@ export default function Button({
   onClick,
   target,
   rel,
+  disabled,
   "aria-label": ariaLabel,
 }: ButtonProps) {
   const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
@@ -81,6 +83,7 @@ export default function Button({
     <button
       type={type}
       onClick={onClick}
+      disabled={disabled}
       aria-label={ariaLabel}
       className={classes}
     >

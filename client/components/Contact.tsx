@@ -9,16 +9,40 @@ const field =
   "w-full rounded-sm border border-border bg-surface px-4 py-3 text-sm text-fg placeholder:text-faint transition-colors duration-200 focus:border-accent";
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-    setSubmitted(true);
+
+    const data = new FormData(form);
+    setStatus("sending");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          company: data.get("company"),
+          projectType: data.get("projectType"),
+          budget: data.get("budget"),
+          message: data.get("message"),
+        }),
+      });
+
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -76,7 +100,7 @@ export default function Contact() {
 
         <div className="lg:col-span-7">
           <div className="surface-card p-7 sm:p-9">
-            {submitted ? (
+            {status === "sent" ? (
               <div className="flex min-h-[24rem] flex-col items-start justify-center">
                 <span className="grid h-12 w-12 place-items-center rounded-full border border-accent text-accent">
                   <Icon name="check" size={22} />
@@ -90,7 +114,7 @@ export default function Contact() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => setSubmitted(false)}
+                  onClick={() => setStatus("idle")}
                   className="mt-6 text-sm text-accent underline-offset-4 hover:underline"
                 >
                   Send another message
@@ -215,12 +239,30 @@ export default function Contact() {
                   />
                 </div>
 
+                {status === "error" && (
+                  <p role="alert" className="text-sm text-red-400">
+                    Something went wrong sending your message. Please email us
+                    directly at{" "}
+                    <a
+                      href={`mailto:${brand.email}`}
+                      className="underline underline-offset-4"
+                    >
+                      {brand.email}
+                    </a>
+                    .
+                  </p>
+                )}
+
                 <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
                   <p className="text-xs text-faint">
                     We reply within one business day.
                   </p>
-                  <Button type="submit" size="md">
-                    Send message
+                  <Button
+                    type="submit"
+                    size="md"
+                    disabled={status === "sending"}
+                  >
+                    {status === "sending" ? "Sending…" : "Send message"}
                     <Icon name="arrow-up-right" size={16} />
                   </Button>
                 </div>
