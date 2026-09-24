@@ -7,10 +7,6 @@ export default function SiteFooter() {
 
   return (
     <footer className="relative border-t border-border">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 dot-matrix opacity-30 [mask-image:linear-gradient(to_top,black,transparent_70%)]"
-      />
       <div className="container-nezt relative py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">

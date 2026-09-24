@@ -6,10 +6,6 @@ import { contact } from "@/lib/content";
 export default function CtaBand() {
   return (
     <section className="relative overflow-hidden border-t border-border py-24 md:py-32">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 dot-matrix opacity-40 [mask-image:radial-gradient(70%_80%_at_0%_100%,black,transparent_75%)]"
-      />
       <div className="container-nezt relative">
         <Reveal>
           <div className="flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-end">

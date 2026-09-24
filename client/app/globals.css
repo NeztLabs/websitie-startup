@@ -17,8 +17,9 @@
   --color-accent-deep: var(--accent-deep);
   --color-accent-contrast: var(--accent-contrast);
 
-  --font-display: var(--font-orbitron), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
 
   --radius-xs: 2px;
   --radius-sm: 4px;
@@ -194,17 +195,6 @@
 }
 
 @layer utilities {
-  .grid-tech {
-    background-image:
-      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-    background-size: 64px 64px;
-  }
-
-  .dot-matrix {
-    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
-    background-size: 22px 22px;
-  }
 
   .reveal {
     opacity: 0;

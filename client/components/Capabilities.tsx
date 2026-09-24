@@ -8,10 +8,6 @@ export default function Capabilities() {
       id="capabilities"
       className="relative border-y border-border bg-bg-elev/50 py-24 md:py-32"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 dot-matrix opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"
-      />
       <div className="container-nezt relative">
         <Reveal>
           <SectionHeading

@@ -8,10 +8,6 @@ export default function Labs() {
       id="labs"
       className="relative overflow-hidden border-y border-border bg-bg-elev/50 py-24 md:py-32"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 dot-matrix opacity-40 [mask-image:radial-gradient(80%_70%_at_100%_0%,black,transparent_75%)]"
-      />
       <div className="container-nezt relative grid gap-14 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-5">
           <Reveal>
@@ -20,16 +16,16 @@ export default function Labs() {
                 aria-hidden="true"
                 className="h-1.5 w-1.5 rounded-full bg-accent"
               />
-              <span className="label-tech">Division</span>
+              <span className="label-tech">Accelerators & Research</span>
             </div>
             <h2 className="mt-5 font-display text-[1.75rem] font-semibold leading-tight tracking-tight text-fg sm:text-4xl">
-              NEZT <span className="text-gold-gradient">LABS</span>
+              NEZT LABS
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted">
               {labs.body}
             </p>
-            <p className="mt-6 font-display text-xs tracking-[0.3em] text-fg">
-              {labs.tagline}
+            <p className="mt-6 font-display text-xs tracking-[0.2em] text-accent font-semibold">
+              PRE-TESTED ENGINES · FASTER TIME-TO-MARKET
             </p>
           </Reveal>
         </div>
