@@ -293,10 +293,12 @@
 
 /* ---------------------------------------------------------------------------
    BOOTSTRAP 5.3 COEXISTENCIA + RESPONSIVE
-   Se importa solo grid + utilities en layout.tsx:
+   Se importa SOLO grid en layout.tsx:
      - .container / .container-fluid / .row / .col-* / .g-* / .offset-*
-     - utilidades d-*, flex-*, order-*, m-*, p-*, text-{sm,md,lg}-*, etc.
-   Estas reglas evitan choques con Tailwind y con el design system NEZT.
+   NO importar bootstrap-utilities ni bootstrap.min.css: sus clases
+   (.text-muted, .border-*, .d-*, etc.) no usan cascade layers y pisan
+   las utilidades de Tailwind v4 aunque se importen antes, rompiendo
+   el dark mode (texto negro sobre fondo negro).
 --------------------------------------------------------------------------- */
 
 @layer base {

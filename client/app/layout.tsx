@@ -4,10 +4,10 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import BootstrapClient from "@/components/BootstrapClient";
 import { I18nProvider } from "@/components/I18nProvider";
-// Bootstrap solo grid + utilities para no romper el design system de Tailwind
-// (se evita bootstrap.min.css completo porque su Reboot pisa los tokens dark/light).
+// Bootstrap solo grid: evita utilities/reboot porque pisan los tokens
+// dark/light de Tailwind (.text-muted, .border-*, etc. no usan cascade layers
+// y ganan a Tailwind aunque se importen antes).
 import "bootstrap/dist/css/bootstrap-grid.min.css";
-import "bootstrap/dist/css/bootstrap-utilities.min.css";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
